@@ -7,15 +7,15 @@ def main():
 
     pong = "+PONG\r\n"
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
-    conn, addr = server_socket.accept()
+    connection, address = server_socket.accept()
 
     with server_socket:
-        with conn:
+        with connection:
             while True: 
-                data = conn.recv(1024)
+                data = connection.recv(1024)
                 if not data: 
                     break
-                conn.send(pong.encode())
+                connection.send(pong.encode())
 
 
 if __name__ == "__main__":
